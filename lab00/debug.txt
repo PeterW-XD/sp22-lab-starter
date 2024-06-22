@@ -1,0 +1,13 @@
+OSTYPE='linux-gnu'
+SH_VERSION='sh: 0: Illegal option --'
+GIT_VERSION='git version 2.43.0'
+PYTHON3_VERSION='Python 3.12.3'
+PYTHON_VERSION='gen-debug.sh: line 7: python: command not found'
+PY_VERSION='gen-debug.sh: line 8: py: command not found'
+GCC_VERSION='gcc (Ubuntu 13.2.0-23ubuntu4) 13.2.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.'
+JAVA_VERSION='openjdk version "21.0.3" 2024-04-16
+OpenJDK Runtime Environment (build 21.0.3+9-Ubuntu-1ubuntu1)
+OpenJDK 64-Bit Server VM (build 21.0.3+9-Ubuntu-1ubuntu1, mixed mode, sharing)'

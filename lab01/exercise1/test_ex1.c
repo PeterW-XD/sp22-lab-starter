@@ -7,12 +7,15 @@ int main(int argc, char **argv) {
     printf("Running tests...\n\n");
     /************ Part 1 Test Cases ************/
     char *str = "hello world!";
-
+    char *str2 = "We can fly";
     int num_l = num_occurrences(str, 'l');
     assert(num_l == 3);
 
     int num_z = num_occurrences(str, 'z');
     assert(num_z == 0);
+
+    int num_space = num_occurrences(str2, ' ');
+    assert(num_space == 2);
 
     /* TODO: Think of a scenario that is not tested by the current test cases. Create one additional test case to test this scenario. */
 
