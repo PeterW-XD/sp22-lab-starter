@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project source="3.4.3-61c.db850b2" version="1.0">
+<project source="3.4.3-61c.cc0f4a6" version="1.0">
   This file is intended to be loaded by Logisim-evolution (https://github.com/reds-heig/logisim-evolution).
 
   <lib desc="#Wiring" name="0">
@@ -170,6 +170,10 @@
     <comp lib="3" loc="(380,130)" name="Adder"/>
     <comp lib="4" loc="(420,100)" name="Register">
       <a name="appearance" val="logisim_evolution"/>
+    </comp>
+    <comp lib="5" loc="(183,320)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="125"/>
     </comp>
     <wire from="(170,150)" to="(190,150)"/>
     <wire from="(170,210)" to="(410,210)"/>
