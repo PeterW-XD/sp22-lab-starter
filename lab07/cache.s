@@ -42,11 +42,13 @@ accessWords:
 wordLoop:
 	beq	a3, zero,  optionZero
     # Option 1:
+    
 	lw	t0, 0(s0)
 	addi t0, t0, 1
 	sw t0, 0(s0)
 	j wordCheck
 optionZero:
+ebreak
 	sw zero, 0(s0)
 wordCheck:
 	add	s0, s0, t1 # increment ptr

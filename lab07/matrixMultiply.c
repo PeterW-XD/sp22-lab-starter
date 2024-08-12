@@ -16,19 +16,19 @@
 void multMat1( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is ijk loop order. */
-    for( i = 0; i < n; i++ )
+    for( i = 0; i < n; i++ )  // Vertically
         for( j = 0; j < n; j++ )
             for( k = 0; k < n; k++ )
-                C[i+j*n] += A[i+k*n]*B[k+j*n];
+                C[i+j*n] += A[i+k*n]*B[k+j*n]; // C[j][i] = A[k][i]*B[j][k]
 }
 
 void multMat2( int n, float *A, float *B, float *C ) {
     int i,j,k;
     /* This is ikj loop order. */
-    for( i = 0; i < n; i++ )
+    for( i = 0; i < n; i++ )  // Vertical but separate
         for( k = 0; k < n; k++ )
             for( j = 0; j < n; j++ )
-                C[i+j*n] += A[i+k*n]*B[k+j*n];
+                C[i+j*n] += A[i+k*n]*B[k+j*n]; // 
 }
 
 void multMat3( int n, float *A, float *B, float *C ) {
@@ -37,7 +37,9 @@ void multMat3( int n, float *A, float *B, float *C ) {
     for( j = 0; j < n; j++ )
         for( i = 0; i < n; i++ )
             for( k = 0; k < n; k++ )
-                C[i+j*n] += A[i+k*n]*B[k+j*n];
+                C[i+j*n] += A[i+k*n]*B[k+j*n]; // 1 and 3 are alike 
+                // because the matrixes are square. 
+                // multMat3: Iterate by rows.
 }
 
 void multMat4( int n, float *A, float *B, float *C ) {
@@ -64,7 +66,9 @@ void multMat6( int n, float *A, float *B, float *C ) {
     for( k = 0; k < n; k++ )
         for( j = 0; j < n; j++ )
             for( i = 0; i < n; i++ )
-                C[i+j*n] += A[i+k*n]*B[k+j*n];
+                C[i+j*n] += A[i+k*n]*B[k+j*n]; // j & k are set; move horizontally (i++)
+                // due to spatial locality, it saves the time to read from mem
+                // while i is iterating.
 }
 
 /* uses timing features from sys/time.h that you haven't seen before */

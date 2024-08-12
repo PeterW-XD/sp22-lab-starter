@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/time.h>
+#include <sys/time.h> // gettimeofday
 #include <time.h>
 #include "transpose.h"
 
@@ -16,6 +16,12 @@ double benchmark(int *A, int *B, int n, int blocksize,
 
     /* measure performance */
     struct timeval start, end;
+    /*
+    struct timeval {
+               time_t      tv_sec;     // seconds 
+               suseconds_t tv_usec;    // microseconds
+     };
+    */
 
     gettimeofday( &start, NULL );
     transpose( n, blocksize, B, A );
@@ -39,28 +45,34 @@ double benchmark(int *A, int *B, int n, int blocksize,
 
 int main( int argc, char **argv ) {
 
-    int n = 12000;
-    int blocksize = 80;
-
+    int n[] = {10000}; //{100, 1000, 2000, 5000, 10000};
+    int blocksize[] = {50, 100, 500, 1000, 5000};//20;
+    
+    for (int i = 0; i < 1; i++) {
+    for (int j = 0; j < 5; j++) {
     /* allocate an n*n block of integers for the matrices */
-    int *A = (int*)malloc( n*n*sizeof(int) );
-    int *B = (int*)malloc( n*n*sizeof(int) );
+    int *A = (int*)malloc( n[i]*n[i]*sizeof(int) );
+    int *B = (int*)malloc( n[i]*n[i]*sizeof(int) );
 
     /* run tests */
-    double time1 = benchmark(A, B, n, blocksize, transpose_naive, "naive transpose");
-    double time2 = benchmark(A, B, n, blocksize, transpose_blocking, "transpose with blocking");
+    double time1 = benchmark(A, B, n[i], blocksize[j], transpose_naive, "naive transpose");
+    double time2 = benchmark(A, B, n[i], blocksize[j], transpose_blocking, "transpose with blocking");
 
     /* release resources */
     free( A );
     free( B );
 
-    printf("testing n = %d, blocksize = %d\n", n, blocksize);
+    printf("testing n = %d, blocksize = %d\n", n[i], blocksize[j]);
     printf("naive: %g milliseconds\n", time1);
     printf("student: %g milliseconds\n", time2);
     if ((time1 - time2) < 250) {
         printf("insufficient speedup\n");
-        return -1;
+        // return -1;
+    } else {
+      printf("Speedup sufficient\n");
     }
-    printf("Speedup sufficient\n");
+
+    }
+    }
     return 0;
 }
